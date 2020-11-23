@@ -217,6 +217,13 @@ axios.get('https://api.banghasan.com/quran/format/json/acak').then((res) => {
     let hasil = `[${ket}]   ${res.data.acak.ar.teks}\n\n${res.data.acak.id.teks}(QS.${res.data.surat.nama}, Ayat ${ket})`;
     conn.sendMessage(id, hasil ,MessageType.text);
 })
+	}
+if (text.includes("#sholat")){
+  const teks = text.replace(/#sholat /, "")
+  axios.get(`https://mhankbarbar.herokuapp.com/api/jadwalshalat?daerah=${teks}&apiKey=zFuV88pxcIiCWuYlwg57`).then ((res) =>{
+  let hasil = `Jadwal sholat di ${teks} hari ini adalah\n\n👉Imsyak : ${res.data.Imsyak}\n👉Subuh : ${res.data.Subuh} WIB\n👉Dzuhur : ${res.data.Dzuhur}WIB\n👉Ashar : ${res.data.Ashar} WIB\n👉Maghrib : ${res.data.Maghrib}\n👉Isya : ${res.data.Isya} WIB\n👉Tengah malam : ${res.data.Dhuha} WIB`;
+  conn.sendMessage(id, hasil, MessageType.text);
+})
 }
 else if (text == 'assalamualaikum'){
 conn.sendMessage(id, 'Waalaikumsalam, ada yang bisa saya bantu? kalo bingung ketik #help ya say..' ,MessageType.text);
